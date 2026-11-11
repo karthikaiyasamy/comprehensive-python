@@ -15,6 +15,7 @@ from comprehensive_python.day01_execution_model import (
     bytecode_inspector,
     frame_inspector,
     memory_tracker,
+    reference_traps,
     weakref_cache,
 )
 from comprehensive_python.day02_types_mutability import snapshot
@@ -32,6 +33,8 @@ def run_day01() -> None:
     frame_inspector.run_demo()
     print("-" * 60)
     weakref_cache.run_demo()
+    print("-" * 60)
+    reference_traps.run_demo()
 
 
 def run_day02() -> None:

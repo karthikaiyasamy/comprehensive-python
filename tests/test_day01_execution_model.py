@@ -12,8 +12,11 @@ from comprehensive_python.day01_execution_model import (
     ExpiringWeakCache,
     ObjectLifecycleTracker,
     TrackedResource,
+    demonstrate_multiplied_list_trap,
+    demonstrate_mutable_default_trap,
     inspect_bytecode,
     inspect_call_stack,
+    inspect_function_defaults,
 )
 
 
@@ -178,6 +181,37 @@ class TestWeakrefCache(unittest.TestCase):
         self.assertNotIn("payload", cache.live_keys())
         self.assertIsNone(cache.get("payload"))
         self.assertIn("payload", finalized_keys)
+
+
+class TestReferenceTraps(unittest.TestCase):
+    """Test cases for mutable default arguments and container multiplication traps."""
+
+    def test_multiplied_list_shares_pointers(self) -> None:
+        """Verify that [[0]*3]*3 shares the exact same inner list across all rows."""
+        trap_results = demonstrate_multiplied_list_trap()
+        self.assertTrue(trap_results["shared_inner_addresses"])
+        self.assertTrue(trap_results["all_rows_affected_in_trap"])
+        self.assertTrue(trap_results["only_first_row_affected_in_safe"])
+
+    def test_mutable_default_persists_in_defaults_tuple(self) -> None:
+        """Verify that mutable default arguments persist across function invocations."""
+        buggy_func, safe_func = demonstrate_mutable_default_trap()
+
+        # Buggy accumulator retains state in __defaults__
+        call1 = buggy_func("itemA")
+        self.assertEqual(call1, ["itemA"])
+        call2 = buggy_func("itemB")
+        self.assertEqual(call2, ["itemA", "itemB"])
+
+        defaults = inspect_function_defaults(buggy_func)
+        self.assertEqual(len(defaults), 1)
+        self.assertEqual(defaults[0], ["itemA", "itemB"])
+
+        # Safe accumulator initializes new list per call
+        safe1 = safe_func("itemA")
+        self.assertEqual(safe1, ["itemA"])
+        safe2 = safe_func("itemB")
+        self.assertEqual(safe2, ["itemB"])
 
 
 if __name__ == "__main__":

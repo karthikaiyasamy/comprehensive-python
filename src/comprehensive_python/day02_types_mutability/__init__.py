@@ -8,3 +8,4 @@ Modules:
 from .snapshot import ConfigNode, inspect_object_header, snapshot_state
 
 __all__ = ["ConfigNode", "inspect_object_header", "snapshot_state"]
+

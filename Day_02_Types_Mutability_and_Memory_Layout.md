@@ -85,7 +85,7 @@ import sys
 
 ascii_str = "hello"
 unicode_str = "helló"
-wide_str = "hello🚀"
+wide_str = "hello\U0001D400"  # Mathematical Bold Capital A (code point > 0xFFFF)
 
 # Length in characters is identical (5 or 6), but byte footprints vary:
 print(sys.getsizeof(ascii_str))   # Compact 1 byte/char layout
@@ -333,7 +333,7 @@ Before moving to Day 03, verify that you can answer these questions with precisi
 
 ## 9. bytes and bytearray: Binary Data Types
 
-`bytes` is an **immutable** sequence of integers, each in the range 0–255.
+`bytes` is an **immutable** sequence of integers, each in the range 0-255.
 `bytearray` is the **mutable** equivalent.
 Neither is a string: indexing returns an `int`, not a character.
 
@@ -383,8 +383,8 @@ print(decoded)           # café
 | Type       | Mutable | Element type | Typical use case                        |
 |------------|---------|-------------|-----------------------------------------|
 | `str`      | No      | Unicode char (str of len 1) | Human-readable text          |
-| `bytes`    | No      | `int` 0–255 | Network protocols, file I/O, cryptography |
-| `bytearray`| Yes     | `int` 0–255 | Streaming buffers, in-place manipulation |
+| `bytes`    | No      | `int` 0-255 | Network protocols, file I/O, cryptography |
+| `bytearray`| Yes     | `int` 0-255 | Streaming buffers, in-place manipulation |
 
 ### When to Use Each
 

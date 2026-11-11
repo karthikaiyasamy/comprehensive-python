@@ -515,7 +515,7 @@ check_gil_status()
 ### Current Limitations
 
 - Many popular C-extensions (some NumPy operations, certain database drivers) are not yet free-thread safe. They may crash or produce incorrect results.
-- CPython's atomic reference counting is slower than the GIL-protected version for single-threaded code (5–10% overhead measured).
+- CPython's atomic reference counting is slower than the GIL-protected version for single-threaded code (5-10% overhead measured).
 - Use `python3.13t` only for experimental multi-threaded CPU workloads until the ecosystem catches up.
 
 ---
