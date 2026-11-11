@@ -14,6 +14,7 @@ from typing import Callable
 from comprehensive_python.day01_execution_model import (
     bytecode_inspector,
     frame_inspector,
+    lifecycle_harness,
     memory_tracker,
     reference_traps,
     weakref_cache,
@@ -35,6 +36,8 @@ def run_day01() -> None:
     weakref_cache.run_demo()
     print("-" * 60)
     reference_traps.run_demo()
+    print("-" * 60)
+    lifecycle_harness.run_demo()
 
 
 def run_day02() -> None:

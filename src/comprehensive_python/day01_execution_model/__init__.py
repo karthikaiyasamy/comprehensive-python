@@ -11,6 +11,7 @@ Modules:
 
 from .bytecode_inspector import inspect_bytecode
 from .frame_inspector import inspect_call_stack
+from .lifecycle_harness import SystemLifecycleHarness
 from .memory_tracker import ObjectLifecycleTracker, TrackedResource
 from .reference_traps import (
     demonstrate_multiplied_list_trap,
@@ -22,6 +23,7 @@ from .weakref_cache import ExpiringWeakCache
 __all__ = [
     "ObjectLifecycleTracker",
     "TrackedResource",
+    "SystemLifecycleHarness",
     "inspect_bytecode",
     "inspect_call_stack",
     "ExpiringWeakCache",

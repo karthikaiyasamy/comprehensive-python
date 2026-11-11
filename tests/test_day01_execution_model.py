@@ -11,6 +11,7 @@ import unittest
 from comprehensive_python.day01_execution_model import (
     ExpiringWeakCache,
     ObjectLifecycleTracker,
+    SystemLifecycleHarness,
     TrackedResource,
     demonstrate_multiplied_list_trap,
     demonstrate_mutable_default_trap,
@@ -212,6 +213,22 @@ class TestReferenceTraps(unittest.TestCase):
         self.assertEqual(safe1, ["itemA"])
         safe2 = safe_func("itemB")
         self.assertEqual(safe2, ["itemB"])
+
+
+class TestDay01CapstoneHarness(unittest.TestCase):
+    """Test cases for the Capstone SystemLifecycleHarness."""
+
+    def test_lifecycle_suite_execution(self) -> None:
+        """Verify that the capstone lifecycle integration suite passes all criteria."""
+        harness = SystemLifecycleHarness()
+        metrics = harness.execute_lifecycle_suite()
+
+        self.assertTrue(metrics["registered_initially"])
+        self.assertTrue(metrics["immediate_refcount_success"])
+        self.assertTrue(metrics["cycle_delayed_properly"])
+        self.assertTrue(metrics["cycle_collected_by_gc"])
+        self.assertGreater(metrics["reclaimed_cycle_objects"], 0)
+        self.assertTrue(metrics["weakref_registry_empty"])
 
 
 if __name__ == "__main__":
