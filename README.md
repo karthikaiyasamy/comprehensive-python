@@ -20,7 +20,7 @@ By the end of this curriculum, you will understand:
 
 ---
 
-## Curriculum Structure (12 Days)
+## Curriculum Structure (13 Days)
 
 ### Part 1: The Core Mental Model and Memory Mechanics
 * **Day 01:** [Execution Model and Memory Architecture](Day_01_Execution_Model_and_Memory.md)
@@ -85,6 +85,12 @@ By the end of this curriculum, you will understand:
   * Mocking external dependencies (`unittest.mock`).
   * Performance profiling: `cProfile`, line profiler, memory profiler.
   * Modern packaging and environment management (`pyproject.toml`, virtual environments).
+* **Day 13:** [High-Throughput Pipelines, Memory Discipline & Production Robustness](Day_13_High_Throughput_Pipelines_and_Production_Robustness.md)
+  * Memory discipline: Resident Set Size (RSS), virtual memory, and Linux OOM Killer (exit code 137) mechanics.
+  * C-level overhead awareness: `PyObject` internal anatomy, object allocation taxes, instance `__dict__` vs `__slots__`.
+  * Deduplication with `sys.intern()` and zero-copy buffer slicing with `memoryview`.
+  * Production robustness: Atomic file replacements (`os.replace`), POSIX signal handling (`SIGTERM`/`SIGINT`), and structured logging.
+  * Deterministic testing of gigabyte-scale stream parsers using in-memory `pytest` fixtures (`io.StringIO`/`io.BytesIO`).
 
 ---
 
