@@ -104,3 +104,62 @@ Every day follows a consistent, structured blueprint:
 5. **Common Traps and Pitfalls:** Subtle bugs that catch experienced engineers coming from other languages.
 6. **Hands-On Exercise:** A practical engineering challenge with a complete reference solution.
 
+---
+
+## Hands-On Practice Laboratory
+
+The repository includes a modern Python project setup with structured source modules and test suites.
+
+### Project Layout
+
+```text
+comprehensive-python/
+├── pyproject.toml              # Build metadata, pytest, mypy, and ruff configuration
+├── src/
+│   └── comprehensive_python/
+│       ├── __init__.py
+│       ├── cli.py              # Central runner for curriculum lab demonstrations
+│       ├── day01_execution_model/
+│       │   ├── bytecode_inspector.py
+│       │   ├── frame_inspector.py
+│       │   ├── memory_tracker.py
+│       │   └── weakref_cache.py
+│       └── day02_types_mutability/
+│           └── snapshot.py
+└── tests/
+    ├── conftest.py             # Shared fixtures and GC isolation
+    ├── test_day01_execution_model.py
+    └── test_day02_types_mutability.py
+```
+
+### Quickstart
+
+1. **Set up a virtual environment (optional but recommended):**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -e ".[dev]"
+   ```
+
+2. **Execute lab demonstrations via CLI:**
+   ```bash
+   # Run all demonstrations for Day 01
+   PYTHONPATH=src python3 -m comprehensive_python.cli --day 1
+
+   # Run demonstrations for Day 02
+   PYTHONPATH=src python3 -m comprehensive_python.cli --day 2
+
+   # List available modules
+   PYTHONPATH=src python3 -m comprehensive_python.cli --list
+   ```
+
+3. **Run the test suite:**
+   ```bash
+   # Using standard library test runner (zero external dependencies required)
+   PYTHONPATH=src python3 -m unittest discover tests -v
+
+   # Or using pytest (when dev dependencies are installed)
+   pytest -v
+   ```
+
+
